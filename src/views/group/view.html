@@ -1,0 +1,9 @@
+<br/>
+<div class="row">
+  <div class="col-xs-6 col-md-3" ng-repeat="selfie in selfies">
+    <a ui-sref="selfie.view({selfieId:'{{ selfie._id }}'})" class="thumbnail">
+      <img id="selfie-image-{{ $index }}" ng-init="getSelfie(selfie, $index)" style="height:190px;">
+    </a>
+  </div>
+</div>
+<button class="btn btn-primary" ui-sref="selfieCreate()"><i class="fa fa-plus"></i> New Selfie</button>

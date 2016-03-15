@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">My Groups</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <div class="well" style="text-align:center;" ng-if="noGroups">
+            <p>You currently do not have any selfie groups.</p>
+            <p><button class="btn btn-primary" ui-sref="find()"><i class="fa fa-camera"></i> Join Group Selfie</button> -- OR -- <button class="btn btn-primary" ui-sref="groupCreate()"><i class="fa fa-plus"></i> Start Group Selfie</button></p>
+          </div>
+          <li class="list-group-item" ng-repeat="group in groups"><a ui-sref="group.view({groupId: group._id})">{{ group.data.title }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col col-sm-6">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        <button class="btn btn-primary btn-block" ui-sref="find()"><i class="fa fa-camera"></i> Join Group Selfie</button>
+        <button class="btn btn-primary btn-block" ui-sref="groupCreate()"><i class="fa fa-plus"></i> Start Group Selfie</button>
+      </div>
+    </div>
+  </div>
+</div>
