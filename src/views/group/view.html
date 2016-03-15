@@ -1,11 +1,12 @@
 <br/>
 <div class="row">
-  <div class="col-xs-6 col-md-3" ng-repeat="selfie in selfies">
+  <div class="col-xs-4 col-md-2" ng-repeat="selfie in selfies">
     <a ui-sref="selfie.view({selfieId:'{{ selfie._id }}'})" class="thumbnail">
-      <img ng-src="{{ selfie.data.picture[0].url }}" style="height:190px;">
+      <img ng-src="{{ selfie.data.picture[0].url }}">
     </a>
   </div>
 </div>
 <button ng-if="currentResource.resource.data.status === 'open'" class="btn btn-primary" ui-sref="selfieCreate()">
   <i class="fa fa-plus"></i> New Selfie
 </button>
+<br/>
