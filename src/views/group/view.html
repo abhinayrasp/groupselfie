@@ -6,4 +6,6 @@
     </a>
   </div>
 </div>
-<button class="btn btn-primary" ui-sref="selfieCreate()"><i class="fa fa-plus"></i> New Selfie</button>
+<button ng-if="currentResource.resource.data.status === 'open'" class="btn btn-primary" ui-sref="selfieCreate()">
+  <i class="fa fa-plus"></i> New Selfie
+</button>
