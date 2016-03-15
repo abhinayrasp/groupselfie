@@ -17,6 +17,7 @@
     FormioAuthProvider.register('login', 'user', 'user/login');
     FormioAuthProvider.register('register', 'user', 'user/register');
 
+    // This will be your groups Form.io API url.
     var appUrl = 'https://groupselfie.form.io';
     FormioResourceProvider.register('group', appUrl + '/group', {
       templates: {
@@ -25,28 +26,16 @@
       controllers: {
         create: [
           '$scope',
-          'FormioUtils',
-          function($scope, FormioUtils) {
-            // Default the status to 'open'.
+          function($scope) {
             $scope.submission.data.status = 'open';
-
-            // Create a code for them.
-            $scope.submission.data.code = chance.string({
-              length: 5,
-              pool: 'abcdefghijklmnopqrstuvwxyz0123456789'
-            });
-
-            // Hide the code.
-            $scope.hideComponents = ['code']
           }
         ],
         view: [
           '$scope',
-          'FormioStorageS3',
           '$stateParams',
           'Formio',
           '$http',
-          function($scope, FormioStorageS3, $stateParams, Formio, $http) {
+          function($scope, $stateParams, Formio, $http) {
             $scope.selfies = [];
             $http.get(appUrl + '/selfie/submission?data.group._id=' + $stateParams.groupId, {
               headers: {
@@ -55,14 +44,6 @@
             }).then(function(result) {
               $scope.selfies = result.data;
             });
-
-            $scope.getSelfie = function(selife, index) {
-              FormioStorageS3.getFile(appUrl + '/selfie', selife.data.picture[0]).then(function(file) {
-                angular.element('#selfie-image-' + index).attr({
-                  src: file.url
-                });
-              });
-            };
           }
         ]
       }
@@ -87,5 +68,4 @@
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
   }
-
 })();

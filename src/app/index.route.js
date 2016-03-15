@@ -46,7 +46,9 @@
           $scope.loading = false;
           $scope.findGroup = function() {
             $scope.loading = true;
-            $http.get(appUrl + '/group/submission?data.name=' + $scope.groupName, {headers: {'x-jwt-token': Formio.getToken()}}).then(function(result) {
+            $http.get(appUrl + '/group/submission?data.name=' + $scope.groupName.toLowerCase(), {
+              headers: {'x-jwt-token': Formio.getToken()}
+            }).then(function(result) {
               $scope.loading = false;
               if (!result || !result.data || !result.data.length) {
                 toastr.info('Group not found');
