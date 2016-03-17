@@ -37,7 +37,7 @@
           '$http',
           function($scope, $stateParams, Formio, $http) {
             $scope.selfies = [];
-            $http.get(appUrl + '/selfie/submission?data.group._id=' + $stateParams.groupId, {
+            $http.get(appUrl + '/selfie/submission?limit=100&data.group._id=' + $stateParams.groupId, {
               headers: {
                 'x-jwt-token': Formio.getToken()
               }
